@@ -1,10 +1,10 @@
 {
-  "name": "atom-dark-ui",
+  "name": "sean-ui",
   "theme": "ui",
   "version": "0.25.0",
-  "description": "Default dark theme for interface components",
+  "description": "Default dark theme for interface components extended",
   "license": "MIT",
-  "repository": "https://github.com/atom/atom-dark-ui",
+  "repository": "https://github.com/seanhealy/atom-dark-ui",
   "engines": {
     "atom": ">0.40.0"
   }

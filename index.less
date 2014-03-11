@@ -1,17 +1,160 @@
-@import "stylesheets/atom";
-@import "stylesheets/buttons";
-@import "stylesheets/editor";
-@import "stylesheets/git";
-@import "stylesheets/lists";
-@import "stylesheets/messages";
-@import "stylesheets/nav";
-@import "stylesheets/overlays";
-@import "stylesheets/panels";
-@import "stylesheets/panes";
-@import "stylesheets/progress";
-@import "stylesheets/sites";
-@import "stylesheets/tabs";
-@import "stylesheets/text";
-@import "stylesheets/tooltips";
-@import "stylesheets/tree-view";
-@import "stylesheets/utilities";
+// @import "stylesheets/atom";
+// @import "stylesheets/buttons";
+// @import "stylesheets/editor";
+// @import "stylesheets/git";
+// @import "stylesheets/lists";
+// @import "stylesheets/messages";
+// @import "stylesheets/nav";
+// @import "stylesheets/overlays";
+// @import "stylesheets/panels";
+// @import "stylesheets/panes";
+// @import "stylesheets/progress";
+// @import "stylesheets/sites";
+// @import "stylesheets/tabs";
+// @import "stylesheets/text";
+// @import "stylesheets/tooltips";
+// @import "stylesheets/tree-view";
+// @import "stylesheets/utilities";
+
+@pink: #e63dba;
+@border_color: fade(#fff, 10%);
+@background: rgba(0,0,0,0.8);
+@metal_text_color: #999;
+
+.workspace {
+    background-color: #000;
+    background-color: #ebebeb;
+    // background-image: url(http://d.pr/i/50Ry.jpg); // supergirl
+    background-image: url(http://d.pr/i/scUq.png); // GI Joe
+    // background-image: url(http://d.pr/i/ynYT.jpg); // birds
+    background-position: bottom center;
+    // background-position: bottom left;
+    background-size: contain;
+    // background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tool-panel,
+.tab-bar {
+    color: #fff;
+    background-color: @background;
+}
+
+.tab-bar {
+    border: 1px solid @border_color;
+    border-right: none;
+
+    .tab {
+        padding-left: 10px;
+
+        color: @metal_text_color;
+
+        border-right: 1px solid @border_color;
+
+        &:first-child {
+            padding-left: 10px;
+        }
+
+        &.modified {
+            .close-icon:before {
+                color: @pink;
+            }
+
+            &:not(:hover){
+                .close-icon {
+                    top: 4px;
+                    right: 13px;
+                    border-color: @pink;
+                }
+            }
+        }
+
+        &.active {
+            background-color: @border_color;
+            border-color: transparent;
+        }
+    }
+}
+
+.status-bar {
+    border-top: 1px solid @border_color;
+}
+
+.editor {
+    .gutter {
+        border: 1px solid @border_color;
+        border-top: none;
+        border-bottom: none;
+        background-color: rgba(0,0,0,0);
+
+        .line-numbers {
+            .foldable {
+                &.folded {
+                    color: #fff;
+                    background-color: @pink;
+                }
+            }
+
+            .cursor-line {
+                color: #000;
+                background-color: fade(#fff, 75%);
+            }
+        }
+    }
+
+    .lines {
+        .indent-guide {
+            color: transparent;
+            border: none;
+
+            background-color: fade(@border_color, 7%);
+
+            &:nth-child(odd) { background-color: fade(@border_color, 12%); }
+        }
+    }
+
+    &.editor-colors {
+        background-color: @background;
+    }
+}
+
+.autocomplete.select-list {
+    ol.list-group {
+        border: 1px solid @pink;
+        background-color: @background;
+
+        li {
+            padding: 0px;
+        }
+    }
+}
+
+ol.list-group {
+    .selected {
+        color: #fff;
+        &:before {
+            background-color: fade(@pink, 70%);
+        }
+    }
+}
+
+ol.list-tree {
+    color: @metal_text_color;
+
+    .icon {
+        &:before {
+            -webkit-font-smoothing: subpixel-antialiased;
+            font-size: 12px;
+        }
+    }
+
+    > .selected {
+        > .header {
+            color: #fff;
+        }
+
+        &:before {
+            background-color: fade(@pink, 70%);
+        }
+    }
+}
