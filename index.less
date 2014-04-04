@@ -1,27 +1,11 @@
-// @import "stylesheets/atom";
-// @import "stylesheets/buttons";
-// @import "stylesheets/editor";
-// @import "stylesheets/git";
-// @import "stylesheets/lists";
-// @import "stylesheets/messages";
-// @import "stylesheets/nav";
-// @import "stylesheets/overlays";
-// @import "stylesheets/panels";
-// @import "stylesheets/panes";
-// @import "stylesheets/progress";
-// @import "stylesheets/sites";
-// @import "stylesheets/tabs";
-// @import "stylesheets/text";
-// @import "stylesheets/tooltips";
-// @import "stylesheets/tree-view";
-// @import "stylesheets/utilities";
-
 @pink: #e63dba;
 @border_color: fade(#fff, 10%);
 @background: rgba(0,0,0,0.8);
 @metal_text_color: #999;
 
 .workspace {
+    font-family: 'Anonymous Pro', monospace;
+
     background-color: #000;
     background-color: #ebebeb;
     // background-image: url(http://d.pr/i/50Ry.jpg); // supergirl
@@ -80,6 +64,47 @@
     border-top: 1px solid @border_color;
 }
 
+.overlay,
+.overlay.from-top {
+    position: absolute;
+    top: 50%;
+
+    margin-top: -200px;
+    padding: 0px;
+
+    border: 1px solid @pink;
+
+    background: transparent;
+
+    .editor.mini {
+        margin: 0px;
+        padding: 5px 10px;
+    }
+
+    ol.list-group {
+        margin: 0px;
+        color: #999;
+        border-top: 1px solid @pink;
+        background-color: @background;
+
+        li {
+            position: relative;
+            padding-left: 10px;
+
+            .secondary-line {
+                padding-left: 10px;
+                font-size: 0.8em;
+            }
+
+            &.selected {
+                &:before {
+                    height: 100%;
+                }
+            }
+        }
+    }
+}
+
 .editor {
     .gutter {
         border: 1px solid @border_color;
@@ -88,16 +113,26 @@
         background-color: rgba(0,0,0,0);
 
         .line-numbers {
+            left: 1px;
+            color: fade(@border_color, 30%);
+
             .foldable {
                 &.folded {
                     color: #fff;
-                    background-color: @pink;
+                    background-color: @border_color;
                 }
             }
 
+            .git-line-added,
+            .git-line-modified,
+            .git-line-removed {
+                color: inherit;
+                border-left-width: 1px;
+            }
+
             .cursor-line {
-                color: #000;
-                background-color: fade(#fff, 75%);
+                color: @pink !important;
+                background-color: @border_color;
             }
         }
     }
@@ -110,6 +145,14 @@
             background-color: fade(@border_color, 7%);
 
             &:nth-child(odd) { background-color: fade(@border_color, 12%); }
+        }
+    }
+
+    .underlayer {
+        .selection {
+            .region {
+                background-color: fade(@pink, 25%);
+            }
         }
     }
 
@@ -138,13 +181,25 @@ ol.list-group {
     }
 }
 
+.tree-view-scroller {
+    overflow-x: hidden;
+}
+
 ol.list-tree {
     color: @metal_text_color;
+    font-size: inherit;
 
-    .icon {
-        &:before {
-            -webkit-font-smoothing: subpixel-antialiased;
-            font-size: 12px;
+    .list-item {
+        font-size: 11px;
+        line-height: 20px;
+
+        .icon {
+            &:before {
+                width: 14px;
+                text-align: center;
+                -webkit-font-smoothing: subpixel-antialiased;
+                font-size: 12px;
+            }
         }
     }
 
